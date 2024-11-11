@@ -31,35 +31,51 @@ void Kromozom::genEkle(char gen) {
 }
 
 pair<Kromozom*, Kromozom*> Kromozom::caprazla(Kromozom* diger) {
-    int bolmeNoktasi1 = (genSayisi % 2 == 0) ? genSayisi / 2 : (genSayisi - 1) / 2;
-    int bolmeNoktasi2 = (diger->genSayisi % 2 == 0) ? diger->genSayisi / 2 : (diger->genSayisi - 1) / 2;
+    int bolmeNoktasi1 = genSayisi / 2;
+    int bolmeNoktasi2 = diger->genSayisi / 2;
 
-    // İlk yeni kromozom
     Kromozom* yeniKromozom1 = new Kromozom();
+    Kromozom* yeniKromozom2 = new Kromozom();
+
+    // Yeni Kromozom 1: ilk kromozomun sol yarısı + ikinci kromozomun sağ yarısı
     Dugum* mevcut1 = baslangic;
     for (int i = 0; i < bolmeNoktasi1; i++) {
         yeniKromozom1->genEkle(mevcut1->gen);
         mevcut1 = mevcut1->sonraki;
     }
+
     Dugum* mevcut2 = diger->baslangic;
     for (int i = 0; i < bolmeNoktasi2; i++) {
         mevcut2 = mevcut2->sonraki;
     }
+
+    // Eğer ikinci kromozomun gen sayısı tekse, ortadaki geni atla
+    if (diger->genSayisi % 2 != 0 && mevcut2 != nullptr) {
+        mevcut2 = mevcut2->sonraki;
+    }
+
     while (mevcut2) {
         yeniKromozom1->genEkle(mevcut2->gen);
         mevcut2 = mevcut2->sonraki;
     }
 
-    // İkinci yeni kromozom
-    Kromozom* yeniKromozom2 = new Kromozom();
+    // Yeni Kromozom 2: ilk kromozomun sağ yarısı + ikinci kromozomun sol yarısı
     mevcut1 = baslangic;
     for (int i = 0; i < bolmeNoktasi1; i++) {
         mevcut1 = mevcut1->sonraki;
     }
+
+    // Eğer ilk kromozomun gen sayısı tekse, ortadaki geni atla
+    if (genSayisi % 2 != 0 && mevcut1 != nullptr) {
+        mevcut1 = mevcut1->sonraki;
+    }
+
     while (mevcut1) {
         yeniKromozom2->genEkle(mevcut1->gen);
         mevcut1 = mevcut1->sonraki;
     }
+
+    // İkinci kromozomun sol yarısını ekle
     mevcut2 = diger->baslangic;
     for (int i = 0; i < bolmeNoktasi2; i++) {
         yeniKromozom2->genEkle(mevcut2->gen);
@@ -68,6 +84,7 @@ pair<Kromozom*, Kromozom*> Kromozom::caprazla(Kromozom* diger) {
 
     return {yeniKromozom1, yeniKromozom2};
 }
+
 
 // Mutasyon: Belirtilen indisteki geni "X" ile değiştirir
 void Kromozom::mutasyonYap(int genIndeksi) {
