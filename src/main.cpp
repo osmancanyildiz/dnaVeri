@@ -1,5 +1,3 @@
-// src/main.cpp
-
 #include "../include/Kromozom.hpp"
 #include "../include/Populasyon.hpp"
 #include <fstream>
@@ -44,7 +42,14 @@ void otomatikIslemleriUygula(Populasyon& populasyon) {
                 cout << "Orijinal kromozom: ";
                 populasyon.kromozomAl(ilk)->yazdir();
 
-                populasyon.kromozomAl(ilk)->mutasyonYap(ikinci);
+                if (!populasyon.kromozomAl(ilk)->mutasyonYap(ikinci)) {
+                    cout << "Gecersiz gen numarasi. Lutfen tekrar girin: ";
+                    cin >> ikinci;
+                    while (!populasyon.kromozomAl(ilk)->mutasyonYap(ikinci)) {
+                        cout << "Gecersiz gen numarasi. Lutfen tekrar girin: ";
+                        cin >> ikinci;
+                    }
+                }
 
                 cout << "Mutasyona ugrayan kromozom: ";
                 populasyon.kromozomAl(ilk)->yazdir();
@@ -128,7 +133,14 @@ int main() {
                     cout << "Orijinal kromozom: ";
                     populasyon.kromozomAl(kromozomNo)->yazdir();
 
-                    populasyon.kromozomAl(kromozomNo)->mutasyonYap(genNo);
+                    if (!populasyon.kromozomAl(kromozomNo)->mutasyonYap(genNo)) {
+                        cout << "Gecersiz gen numarasi. Lutfen tekrar girin: ";
+                        cin >> genNo;
+                        while (!populasyon.kromozomAl(kromozomNo)->mutasyonYap(genNo)) {
+                            cout << "Gecersiz gen numarasi. Lutfen tekrar girin: ";
+                            cin >> genNo;
+                        }
+                    }
 
                     cout << "Mutasyona ugrayan kromozom: ";
                     populasyon.kromozomAl(kromozomNo)->yazdir();

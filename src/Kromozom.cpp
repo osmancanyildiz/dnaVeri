@@ -1,5 +1,3 @@
-// src/Kromozom.cpp
-
 #include "../include/Kromozom.hpp"
 
 // Kurucu: Başlangıç durumunda baslangic düğümünü nullptr olarak başlatıyoruz
@@ -70,14 +68,20 @@ pair<Kromozom*, Kromozom*> Kromozom::caprazla(Kromozom* diger) {
 }
 
 // Mutasyon: Belirtilen indisteki geni "X" ile değiştirir
-void Kromozom::mutasyonYap(int genIndeksi) {
+bool Kromozom::mutasyonYap(int genIndeksi) {
+    if (genIndeksi < 0 || genIndeksi >= genSayisi) {
+        return false;
+    }
+
     Dugum* mevcut = baslangic;
     for (int i = 0; i < genIndeksi && mevcut != nullptr; i++) {
         mevcut = mevcut->sonraki;
     }
     if (mevcut != nullptr) {
         mevcut->gen = 'X';
+        return true;
     }
+    return false;
 }
 
 // Yazdır: Kromozomun genlerini sırayla yazdırır
