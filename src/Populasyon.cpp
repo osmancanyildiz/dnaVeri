@@ -1,4 +1,11 @@
-// src/Populasyon.cpp
+/**
+* @file         Populasyon.cpp
+* @description  Populasyon sınıfının metotlarının bulunduğu dosya.
+* @course       2-C
+* @assignment   1. Ödev
+* @date         27.11.2024
+* @author       Osman Can YILDIZ - osman.yildiz4@ogr.sakarya.edu.tr
+*/ 
 
 #include "../include/Populasyon.hpp"
 

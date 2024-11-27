@@ -1,5 +1,11 @@
-// src/Kromozom.cpp
-
+/**
+* @file         kromozom.cpp
+* @description  kromozom sınıfının metotlarının bulunduğu dosya.
+* @course       2-C
+* @assignment   1. Ödev
+* @date         27.11.2024
+* @author       Osman Can YILDIZ - osman.yildiz4@ogr.sakarya.edu.tr
+*/ 
 #include "../include/Kromozom.hpp"
 
 // Kurucu: Başlangıç durumunda baslangic düğümünü nullptr olarak başlatıyoruz
@@ -26,6 +32,7 @@ void Kromozom::genEkle(char gen) {
             gecici = gecici->sonraki;
         }
         gecici->sonraki = yeniDugum;
+        yeniDugum->onceki = gecici;
     }
     genSayisi++;
 }
@@ -114,14 +121,32 @@ int Kromozom::genSayisiniAl() const {
 
 // Küçük Gen Bul: Sağdan sola giderek ilk küçük geni bulur
 char Kromozom::kucukGenBul() const {
+    // Kromozom boşsa
+    if (baslangic == nullptr) {
+        cout << "Kromozom boş!" << endl;
+        return '\0';
+    }
+
+    // İlk gen değerini al
     Dugum* mevcut = baslangic;
     char ilkGen = mevcut->gen;
+    char kucukGen = ilkGen;  // Başlangıçta küçük gen ilk gen olarak kabul edilir.
 
-    while (mevcut != nullptr) {
-        if (mevcut->gen < ilkGen) {
-            return mevcut->gen;
-        }
+    // Kromozomun sonuna git
+    while (mevcut->sonraki != nullptr) {
         mevcut = mevcut->sonraki;
     }
-    return ilkGen;
+
+    // Sağdan sola git, küçük gen bul
+    while (mevcut != nullptr) {
+        if (mevcut->gen < ilkGen) {  // Eğer sağdaki gen, ilk genden küçükse
+            kucukGen = mevcut->gen;  // Küçük gen olarak ayarla
+            break;  // Küçük gen bulundu, işlemi sonlandır
+        }
+        mevcut = mevcut->onceki;  // Bağlı listeyi tersten gez
+    }
+
+    // Küçük gen bulunduysa yazdır, yoksa ilk gen yazdırılacak
+    return kucukGen;
 }
+

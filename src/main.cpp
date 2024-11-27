@@ -1,4 +1,11 @@
-// src/main.cpp
+/**
+* @file         main.cpp
+* @description  Programın çalıştırılmasını sağlayan main fonksiyonunun bulunduğu dosya.
+* @course       2-C
+* @assignment   1. Ödev
+* @date         27.11.2024
+* @author       Osman Can YILDIZ - osman.yildiz4@ogr.sakarya.edu.tr
+*/ 
 
 #include "../include/Kromozom.hpp"
 #include "../include/Populasyon.hpp"

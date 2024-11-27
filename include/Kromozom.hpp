@@ -1,5 +1,11 @@
-// include/Kromozom.hpp
-
+/**
+* @file         Kromozom.hpp
+* @description  krormozom sınıfının başlık dosyası.
+* @course       2-C
+* @assignment   1. Ödev
+* @date         27.11.2024
+* @author       Osman Can YILDIZ - osman.yildiz4@ogr.sakarya.edu.tr
+*/ 
 #ifndef KROMOZOM_HPP
 #define KROMOZOM_HPP
 
@@ -12,7 +18,8 @@ private:
     struct Dugum {
         char gen;
         Dugum* sonraki;
-        Dugum(char g) : gen(g), sonraki(nullptr) {}
+        Dugum* onceki;
+        Dugum(char g) : gen(g), sonraki(nullptr), onceki(nullptr) {}
     };
 
     Dugum* baslangic;

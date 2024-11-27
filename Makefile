@@ -2,7 +2,7 @@
 
 # Derleyici ve bayraklar
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude
+CXXFLAGS = -std=c++17 -Iinclude -g -Wall
 LDFLAGS = -Llib
 TARGET = bin/main.exe
 

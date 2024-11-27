@@ -1,5 +1,11 @@
-// include/Populasyon.hpp
-
+/**
+* @file         Populasyon.hpp
+* @description  populasyon sınıfının başlık dosyası.
+* @course       2-C
+* @assignment   1. Ödev
+* @date         27.11.2024
+* @author       Osman Can YILDIZ - osman.yildiz4@ogr.sakarya.edu.tr
+*/ 
 #ifndef POPULASYON_HPP
 #define POPULASYON_HPP
 
